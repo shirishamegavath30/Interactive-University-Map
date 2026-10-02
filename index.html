@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SNIST Navigation System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="mainHeader">
+
+        <div class="brand">
+            <img src="assets/logo.png" alt="SNIST Logo">
+
+            <div>
+                <h1>SNIST Navigation</h1>
+                <p>Interactive University Navigation System</p>
+            </div>
+        </div>
+
+        <div class="headerActions">
+
+            <button id="voiceBtn" title="Voice Search">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+
+            <button id="darkBtn" title="Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION CONTROLS -->
+    <section class="navigationBar">
+
+        <div class="locationBox">
+
+            <label>
+                <i class="fa-solid fa-location-dot"></i>
+                From
+            </label>
+
+            <select id="fromLocation">
+                <option value="gate">Main Gate</option>
+                <option value="admin">Admin Block</option>
+                <option value="library">Library</option>
+            </select>
+
+        </div>
+
+
+        <div class="swapIcon">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        </div>
+
+
+        <div class="locationBox">
+
+            <label>
+                <i class="fa-solid fa-location-dot"></i>
+                To
+            </label>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Enter room number e.g. 1101">
+
+        </div>
+
+
+        <button id="searchBtn" class="routeButton">
+            <i class="fa-solid fa-route"></i>
+            Find Route
+        </button>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard">
+
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidePanel">
+
+            <div class="panelTitle">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h2>Navigation</h2>
+            </div>
+
+
+            <div class="routeSummary">
+
+                <div class="summaryItem">
+                    <span>Destination</span>
+                    <strong id="roomNo">-</strong>
+                </div>
+
+                <div class="summaryItem">
+                    <span>Block</span>
+                    <strong id="blockName">-</strong>
+                </div>
+
+                <div class="summaryItem">
+                    <span>Floor</span>
+                    <strong id="floorName">-</strong>
+                </div>
+
+                <div class="summaryItem">
+                    <span>Distance</span>
+                    <strong id="distance">-</strong>
+                </div>
+
+                <div class="summaryItem">
+                    <span>Walking Time</span>
+                    <strong id="time">-</strong>
+                </div>
+
+            </div>
+
+
+            <button class="shortestPathBtn" onclick="searchRoom()">
+                <i class="fa-solid fa-diamond-turn-right"></i>
+                Shortest Path
+            </button>
+
+
+            <div class="quickAccess">
+
+                <h3>Quick Access</h3>
+
+                <button onclick="activateMarker('gate')">
+                    <i class="fa-solid fa-door-open"></i>
+                    Main Gate
+                </button>
+
+                <button onclick="activateMarker('admin')">
+                    <i class="fa-solid fa-building"></i>
+                    Admin Block
+                </button>
+
+                <button onclick="activateMarker('library')">
+                    <i class="fa-solid fa-book"></i>
+                    Library
+                </button>
+
+                <button onclick="activateMarker('canteen')">
+                    <i class="fa-solid fa-utensils"></i>
+                    Canteen
+                </button>
+
+            </div>
+
+
+            <div class="legend">
+
+                <h3>Map Legend</h3>
+
+                <p>
+                    <span class="legendDot destination"></span>
+                    Destination
+                </p>
+
+                <p>
+                    <span class="legendDot route"></span>
+                    Navigation Route
+                </p>
+
+                <p>
+                    <span class="legendDot current"></span>
+                    Current Location
+                </p>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAP -->
+        <section class="mapArea">
+
+            <div id="map">
+
+
+                <img
+                    src="assets/campus_map.png"
+                    id="campusMap"
+                    alt="SNIST Campus Map">
+
+
+                <!-- ROUTE -->
+                <svg
+                    id="routeLayer"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none">
+
+                    <polyline
+                        id="routePath"
+                        points=""
+                        fill="none">
+                    </polyline>
+
+                </svg>
+
+
+                <!-- CAMPUS MARKERS -->
+
+                <div id="gate" class="marker gate">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Gate
+                </div>
+
+                <div id="admin" class="marker admin">
+                    <i class="fa-solid fa-building"></i>
+                    Admin
+                </div>
+
+                <div id="library" class="marker library">
+                    <i class="fa-solid fa-book"></i>
+                    Library
+                </div>
+
+                <div id="university" class="marker university">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    University
+                </div>
+
+                <div id="ece" class="marker ece">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    ECE
+                </div>
+
+                <div id="cse" class="marker cse">
+                    <i class="fa-solid fa-computer"></i>
+                    CSE
+                </div>
+
+                <div id="firstyear" class="marker firstyear">
+                    <i class="fa-solid fa-school"></i>
+                    First Year
+                </div>
+
+                <div id="biotech" class="marker biotech">
+                    <i class="fa-solid fa-dna"></i>
+                    Biotech
+                </div>
+
+                <div id="canteen" class="marker canteen">
+                    <i class="fa-solid fa-utensils"></i>
+                    Canteen
+                </div>
+
+
+                <!-- CURRENT LOCATION -->
+
+                <div id="currentLocation" class="currentLocation">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+
+
+                <!-- COMPASS -->
+
+                <div class="compass">
+                    <span>N</span>
+                    <i class="fa-solid fa-location-arrow"></i>
+                </div>
+
+
+                <!-- ZOOM -->
+
+                <div class="mapControls">
+
+                    <button id="zoomIn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <button id="zoomOut">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- MAP LABEL -->
+
+                <div class="mapLabel">
+                    <i class="fa-solid fa-map"></i>
+                    SNIST Campus
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT INFORMATION PANEL -->
+        <aside class="infoPanel">
+
+            <div class="panelTitle">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <h2>Route Information</h2>
+
+            </div>
+
+
+            <div id="roomInfo">
+
+                <div class="welcomeIcon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+
+                <h3>Welcome to SNIST</h3>
+
+                <p>
+                    Enter a room number to find the shortest
+                    route and navigation directions.
+                </p>
+
+            </div>
+
+
+            <div class="directionsBox">
+
+                <h3>
+                    <i class="fa-solid fa-diamond-turn-right"></i>
+                    Directions
+                </h3>
+
+                <div id="directionsContent">
+
+                    <p class="emptyDirections">
+                        Your navigation instructions will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button class="voiceNavigation" onclick="speakDirections(searchInput.value)">
+
+                <i class="fa-solid fa-volume-high"></i>
+
+                Voice Guidance
+
+            </button>
+
+        </aside>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>
+            <i class="fa-solid fa-location-dot"></i>
+            SNIST Interactive University Navigation System
+        </span>
+
+        <span>
+            B.Tech Major Project © 2026
+        </span>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="data.js"></script>
+    <script src="room.js"></script>
+    <script src="route.js"></script>
+    <script src="voice.js"></script>
+    <script src="darkmode.js"></script>
+    <script src="map.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

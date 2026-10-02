@@ -1,0 +1,1145 @@
+/* ==========================================
+   SNIST INTERACTIVE UNIVERSITY NAVIGATION
+   Professional Map Dashboard
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    background: #eef2f7;
+    color: #172033;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.mainHeader {
+    height: 76px;
+    background: #102a43;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.brand h1 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.brand p {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-top: 3px;
+}
+
+.headerActions {
+    display: flex;
+    gap: 10px;
+}
+
+.headerActions button {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.1);
+    color: white;
+
+    cursor: pointer;
+    font-size: 17px;
+
+    transition: .2s;
+}
+
+.headerActions button:hover {
+    background: rgba(255,255,255,.2);
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   NAVIGATION BAR
+========================================== */
+
+.navigationBar {
+    min-height: 82px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    padding: 14px 25px;
+
+    border-bottom: 1px solid #dfe5ec;
+}
+
+.locationBox {
+    width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.locationBox label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #65758b;
+    text-transform: uppercase;
+}
+
+.locationBox label i {
+    color: #1677ff;
+    margin-right: 4px;
+}
+
+.locationBox input,
+.locationBox select {
+    height: 42px;
+
+    border: 1px solid #d7dee8;
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    background: #f8fafc;
+    color: #172033;
+
+    font-size: 14px;
+}
+
+.locationBox input:focus,
+.locationBox select:focus {
+    border-color: #1677ff;
+    box-shadow: 0 0 0 3px rgba(22,119,255,.1);
+}
+
+.swapIcon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #edf4ff;
+    color: #1677ff;
+
+    margin-top: 17px;
+}
+
+.routeButton {
+    height: 42px;
+
+    margin-top: 17px;
+
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #1677ff;
+    color: white;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.routeButton:hover {
+    background: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+.dashboard {
+    height: calc(100vh - 158px);
+
+    display: grid;
+
+    grid-template-columns: 245px 1fr 285px;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   SIDE PANELS
+========================================== */
+
+.sidePanel,
+.infoPanel {
+    background: white;
+
+    border: 1px solid #dfe5ec;
+
+    border-radius: 14px;
+
+    padding: 17px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 3px 12px rgba(23,32,51,.05);
+}
+
+.panelTitle {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 15px;
+}
+
+.panelTitle i {
+    color: #1677ff;
+    font-size: 18px;
+}
+
+.panelTitle h2 {
+    font-size: 16px;
+    color: #172033;
+}
+
+
+/* ==========================================
+   ROUTE SUMMARY
+========================================== */
+
+.routeSummary {
+    background: #f6f9fc;
+
+    border-radius: 10px;
+
+    padding: 5px 12px;
+
+    margin-bottom: 14px;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #e3e8ef;
+
+    font-size: 12px;
+}
+
+.summaryItem:last-child {
+    border-bottom: none;
+}
+
+.summaryItem span {
+    color: #738096;
+}
+
+.summaryItem strong {
+    color: #172033;
+    text-align: right;
+    max-width: 125px;
+}
+
+
+/* ==========================================
+   SHORTEST PATH BUTTON
+========================================== */
+
+.shortestPathBtn {
+    width: 100%;
+
+    height: 40px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #1677ff;
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+    transition: .2s;
+}
+
+.shortestPathBtn:hover {
+    background: #0b5ed7;
+}
+
+
+/* ==========================================
+   QUICK ACCESS
+========================================== */
+
+.quickAccess {
+    border-top: 1px solid #e4e8ed;
+
+    padding-top: 15px;
+}
+
+.quickAccess h3,
+.legend h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+
+    color: #65758b;
+
+    margin-bottom: 9px;
+}
+
+.quickAccess button {
+    width: 100%;
+
+    border: 1px solid #e1e6ed;
+
+    background: #fafbfd;
+
+    color: #344054;
+
+    padding: 9px 10px;
+
+    border-radius: 7px;
+
+    margin-bottom: 7px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.quickAccess button i {
+    width: 20px;
+    color: #1677ff;
+}
+
+.quickAccess button:hover {
+    background: #edf4ff;
+    border-color: #bdd6ff;
+}
+
+
+/* ==========================================
+   LEGEND
+========================================== */
+
+.legend {
+    border-top: 1px solid #e4e8ed;
+
+    margin-top: 8px;
+    padding-top: 15px;
+}
+
+.legend p {
+    font-size: 11px;
+
+    margin: 9px 0;
+
+    color: #596579;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legendDot {
+    width: 10px;
+    height: 10px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.legendDot.destination {
+    background: #ff3b30;
+}
+
+.legendDot.route {
+    background: #1677ff;
+}
+
+.legendDot.current {
+    background: #00c853;
+}
+
+
+/* ==========================================
+   MAP AREA
+========================================== */
+
+.mapArea {
+    background: #dce5df;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border: 1px solid #ccd6cf;
+
+    box-shadow: 0 3px 12px rgba(23,32,51,.08);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #dfe8df;
+}
+
+#campusMap {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .3s ease;
+}
+
+
+/* ==========================================
+   ROUTE
+========================================== */
+
+#routeLayer {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+#routePath {
+    fill: none;
+
+    stroke: #1677ff;
+
+    stroke-width: 0.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,.3));
+}
+
+.routeAnimation {
+    animation: drawRoute 2s linear forwards;
+}
+
+@keyframes drawRoute {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+/* ==========================================
+   MAP MARKERS
+========================================== */
+
+.marker {
+    position: absolute;
+
+    z-index: 30;
+
+    background: #ffffff;
+
+    color: #26364a;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    border: 1px solid #d5dce5;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,.18);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+.marker i {
+    color: #1677ff;
+    margin-right: 3px;
+}
+
+.marker:hover {
+    transform: scale(1.08);
+    z-index: 100;
+}
+
+.activeMarker {
+    background: #1677ff;
+    color: white;
+
+    border-color: #1677ff;
+
+    box-shadow: 0 0 0 4px rgba(22,119,255,.2),
+                0 4px 12px rgba(0,0,0,.2);
+
+    animation: markerPulse 1.3s infinite;
+}
+
+.activeMarker i {
+    color: white;
+}
+
+@keyframes markerPulse {
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* ==========================================
+   MARKER POSITIONS
+========================================== */
+
+.gate {
+    left: 47%;
+    top: 89%;
+}
+
+.admin {
+    left: 47%;
+    top: 69%;
+}
+
+.university {
+    left: 19%;
+    top: 22%;
+}
+
+.library {
+    left: 46%;
+    top: 27%;
+}
+
+.ece {
+    left: 33%;
+    top: 47%;
+}
+
+.cse {
+    left: 59%;
+    top: 47%;
+}
+
+.firstyear {
+    left: 71%;
+    top: 50%;
+}
+
+.biotech {
+    left: 71%;
+    top: 67%;
+}
+
+.canteen {
+    left: 68%;
+    top: 81%;
+}
+
+
+/* ==========================================
+   CURRENT LOCATION
+========================================== */
+
+.currentLocation {
+    position: absolute;
+
+    left: 47%;
+    top: 88%;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #00c853;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 0 0 5px rgba(0,200,83,.2),
+        0 3px 10px rgba(0,0,0,.3);
+
+    z-index: 40;
+
+    transition: all 1.5s ease;
+}
+
+.currentLocation i {
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   COMPASS
+========================================== */
+
+.compass {
+    position: absolute;
+
+    right: 17px;
+    top: 17px;
+
+    width: 54px;
+    height: 54px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.95);
+
+    border: 1px solid #d6dde5;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 50;
+}
+
+.compass span {
+    position: absolute;
+
+    top: 4px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    color: #d63031;
+}
+
+.compass i {
+    color: #1677ff;
+    font-size: 19px;
+}
+
+
+/* ==========================================
+   ZOOM CONTROLS
+========================================== */
+
+.mapControls {
+    position: absolute;
+
+    right: 17px;
+    bottom: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 50;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+
+.mapControls button {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #d7dee6;
+
+    background: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    color: #26364a;
+}
+
+.mapControls button:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.mapControls button:last-child {
+    border-radius: 0 0 8px 8px;
+
+    border-top: none;
+}
+
+.mapControls button:hover {
+    background: #edf4ff;
+    color: #1677ff;
+}
+
+
+/* ==========================================
+   MAP LABEL
+========================================== */
+
+.mapLabel {
+    position: absolute;
+
+    left: 15px;
+    top: 15px;
+
+    background: rgba(255,255,255,.94);
+
+    padding: 8px 11px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #26364a;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+
+    z-index: 50;
+}
+
+.mapLabel i {
+    color: #1677ff;
+    margin-right: 5px;
+}
+
+
+/* ==========================================
+   RIGHT INFORMATION PANEL
+========================================== */
+
+.infoPanel {
+    display: flex;
+    flex-direction: column;
+}
+
+#roomInfo {
+    background: #f6f9fc;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+#roomInfo h2 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+#roomInfo h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+#roomInfo hr {
+    border: none;
+
+    border-top: 1px solid #e1e6ed;
+
+    margin: 8px 0;
+}
+
+#roomInfo p {
+    margin: 5px 0;
+}
+
+.welcomeIcon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #edf4ff;
+    color: #1677ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 10px;
+
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   DIRECTIONS
+========================================== */
+
+.directionsBox {
+    margin-top: 14px;
+
+    border-top: 1px solid #e3e8ef;
+
+    padding-top: 14px;
+}
+
+.directionsBox h3 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.directionsBox h3 i {
+    color: #1677ff;
+    margin-right: 5px;
+}
+
+#directionsContent {
+    font-size: 12px;
+    color: #566579;
+}
+
+#directionsContent ol {
+    padding-left: 20px;
+}
+
+#directionsContent li {
+    margin: 9px 0;
+    padding-left: 3px;
+}
+
+.emptyDirections {
+    color: #8a96a6;
+}
+
+
+/* ==========================================
+   VOICE BUTTON
+========================================== */
+
+.voiceNavigation {
+    width: 100%;
+
+    height: 40px;
+
+    margin-top: auto;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #172033;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.voiceNavigation:hover {
+    background: #26364a;
+}
+
+.voiceNavigation i {
+    margin-right: 6px;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    height: 34px;
+
+    background: #102a43;
+
+    color: rgba(255,255,255,.8);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    font-size: 10px;
+}
+
+footer i {
+    margin-right: 5px;
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark {
+    background: #101820;
+    color: white;
+}
+
+body.dark .navigationBar,
+body.dark .sidePanel,
+body.dark .infoPanel {
+    background: #18232e;
+
+    border-color: #2d3a47;
+}
+
+body.dark .locationBox input,
+body.dark .locationBox select {
+    background: #202d39;
+    color: white;
+    border-color: #374653;
+}
+
+body.dark .panelTitle h2 {
+    color: white;
+}
+
+body.dark .routeSummary,
+body.dark #roomInfo {
+    background: #202d39;
+}
+
+body.dark .summaryItem {
+    border-color: #35424f;
+}
+
+body.dark .summaryItem strong {
+    color: white;
+}
+
+body.dark .quickAccess {
+    border-color: #35424f;
+}
+
+body.dark .quickAccess button {
+    background: #202d39;
+    color: #dce4ec;
+    border-color: #35424f;
+}
+
+body.dark .quickAccess button:hover {
+    background: #263746;
+}
+
+body.dark .legend {
+    border-color: #35424f;
+}
+
+body.dark .legend p {
+    color: #c0c9d3;
+}
+
+body.dark .directionsBox {
+    border-color: #35424f;
+}
+
+body.dark #directionsContent {
+    color: #c0c9d3;
+}
+
+body.dark .swapIcon {
+    background: #20384e;
+}
+
+body.dark .mapLabel,
+body.dark .compass {
+    background: rgba(24,35,46,.95);
+    color: white;
+    border-color: #394754;
+}
+
+body.dark .mapControls button {
+    background: #18232e;
+    color: white;
+    border-color: #394754;
+}
+
+body.dark .mapControls button:hover {
+    background: #263746;
+}
+
+body.dark .marker {
+    background: #18232e;
+    color: white;
+    border-color: #465463;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1150px) {
+
+    .dashboard {
+        grid-template-columns: 210px 1fr 250px;
+    }
+
+    .locationBox {
+        width: 230px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .navigationBar {
+        flex-wrap: wrap;
+    }
+
+    .dashboard {
+        height: auto;
+
+        grid-template-columns: 1fr;
+
+        overflow: visible;
+    }
+
+    .mapArea {
+        height: 550px;
+    }
+
+    .sidePanel,
+    .infoPanel {
+        min-height: 300px;
+    }
+
+    footer {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .mainHeader {
+        padding: 0 12px;
+    }
+
+    .brand h1 {
+        font-size: 16px;
+    }
+
+    .brand p {
+        display: none;
+    }
+
+    .brand img {
+        width: 43px;
+        height: 43px;
+    }
+
+    .navigationBar {
+        padding: 10px;
+    }
+
+    .locationBox {
+        width: 100%;
+    }
+
+    .swapIcon {
+        display: none;
+    }
+
+    .routeButton {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .dashboard {
+        padding: 8px;
+    }
+
+    .mapArea {
+        height: 450px;
+    }
+
+}
